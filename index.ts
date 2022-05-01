@@ -1,2 +1,4 @@
-export * as providers from "@/providers";
-export * as services from "@/services"; 
+export { AuthService, CaptchaAuthService } from "@/services/auth"
+export { BusinessService } from "@/services/business"
+export { ComprehensiveService } from "@/services/comprehensive"
+export { UserService, BaseUserService } from "@/services/user"

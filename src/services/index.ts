@@ -1,4 +1,4 @@
-export * as auth from "./auth/index"
-export * as bussiness from "./business"
-export * as comprehensive from "./comprehensive"
-export * as user from "./user"
+export { AuthService, CaptchaAuthService } from "./auth"
+export { BusinessService } from "./business"
+export { ComprehensiveService } from "./comprehensive"
+export { UserService, BaseUserService } from "./user"
