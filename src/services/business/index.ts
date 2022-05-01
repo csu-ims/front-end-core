@@ -1,9 +1,9 @@
 import { LeaveApplication } from "@/domain/business/leave";
 import { Singleton } from "typescript-ioc";
 
-export namespace BusinessService {
+namespace Student {
     @Singleton
-    export abstract class Student {
+    export abstract class BusinessService {
         /**
          * @param application 要保存的草稿
          */
@@ -11,7 +11,7 @@ export namespace BusinessService {
         /**
          * @param application 要提交的请假申请
          */
-        abstract submit: (application: LeaveApplication) => Promise<boolean>;
+        abstract commit: (application: LeaveApplication) => Promise<boolean>;
         /**
          * @param id 要取消的请假申请id
          */

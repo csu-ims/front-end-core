@@ -1,4 +1,4 @@
-import { BackEndFoundation } from "@/foundations";
+import { HttpFoundation } from "@/foundations";
 import { baseResponse } from "@/domain/base";
 import { mock } from "ts-mockito"
 import { Container } from "typescript-ioc";
@@ -9,7 +9,7 @@ const mockRequest = async<r = baseResponse,q = void,f = void>(url:string,q:q,f:f
     return res;
 };
 
-class BackEnd extends BackEndFoundation {
+class BackEnd extends HttpFoundation {
     get = mockRequest
     post = mockRequest;
     put= mockRequest;
@@ -26,7 +26,7 @@ const fakeReliance: fakeReliance = {
     snapshot: null,
     before(){
         this.snapshot = Container.snapshot();
-        Container.bind(BackEndFoundation).to(BackEnd);
+        Container.bind(HttpFoundation).to(BackEnd);
     },
     after(){
         if(!this.snapshot){

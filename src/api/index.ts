@@ -1,6 +1,6 @@
-import { BackEndFoundation } from "@/foundations";
+import { HttpFoundation } from "@/foundations";
 import { Container } from "typescript-ioc";
 
-const backend = ()=>Container.get(BackEndFoundation);
+const http = ()=>Container.get(HttpFoundation);
 
-export { backend }
+export { http }

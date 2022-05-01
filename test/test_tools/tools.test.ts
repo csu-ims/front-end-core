@@ -1,11 +1,11 @@
 import { User } from "@/domain/user";
-import { BackEndFoundation } from "@/foundations";
+import { HttpFoundation } from "@/foundations";
 import { Container } from "typescript-ioc";
 import { fakeReliance, mockRequest } from "./fakeReliance";
 
-test('fakeReliance',()=>{
+test('fakeReliance tool test',()=>{
     fakeReliance.before();
-    const backend = Container.get(BackEndFoundation);
+    const backend = Container.get(HttpFoundation);
     expect(backend).toBeDefined();
     let prop: keyof typeof backend;
     for(prop in backend){
@@ -16,7 +16,7 @@ test('fakeReliance',()=>{
     fakeReliance.after();
 })
 
-test('mock request',async ()=>{
+test('mock request tool test',async ()=>{
     expect(mockRequest('',null,null)).resolves.toHaveProperty('code');
     mockRequest('',null,null).then( res => {
         expect(res.code).toEqual(200);

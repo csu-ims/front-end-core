@@ -1,7 +1,7 @@
 {
-  "name": "ims-frontend-core",
+  "name": "@ims/ims-frontend-core",
   "version": "0.0.1",
-  "description": "",
+  "description": "IMS frontend core aim to provide the foundation business rules  of IMS frontend, which is inspired by [Clean Architecture](https://dev.to/bespoyasov/clean-architecture-on-frontend-4311), and powered by Ioc.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -21,12 +21,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/DevRickLin/ims-frontend-core"
+    "url": "git+https://github.com/csu-ims/frontend-core.git"
   },
   "dependencies": {
-    "@types/axios": "^0.14.0",
-    "axios": "^0.27.2",
     "reflect-metadata": "^0.1.13",
     "typescript-ioc": "^3.2.2"
+  },
+  "bugs": {
+    "url": "https://github.com/csu-ims/frontend-core/issues"
+  },
+  "homepage": "https://github.com/csu-ims/frontend-core#readme",
+  "directories": {
+    "test": "test"
   }
 }
