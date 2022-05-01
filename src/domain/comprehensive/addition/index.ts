@@ -1,4 +1,4 @@
-import { imguri, uuid } from "../../../utils/type"
+import { imguri, uuid } from "../../base"
 import { PolicyType } from "../policy/type"
 
 export type Addition<T extends PolicyType> = {

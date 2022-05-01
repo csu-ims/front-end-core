@@ -1,5 +1,5 @@
-import { BackEndFoundation } from "@/reliance/foundation";
-import { baseResponse } from "@/utils/type";
+import { BackEndFoundation } from "@/foundations";
+import { baseResponse } from "@/domain/base";
 import { mock } from "ts-mockito"
 import { Container } from "typescript-ioc";
 import { Snapshot } from "typescript-ioc";

@@ -1,19 +1,7 @@
-import { User } from "@/domain/user";
 import { LeaveApplication } from "@/domain/business/leave";
 import { Singleton } from "typescript-ioc";
 
-@Singleton
-abstract class UserService {
-    abstract user?: User;
-    abstract update: (user: User) => void;
-}
-
-@Singleton
-abstract class AuthService {
-    abstract auth:()=>Promise<User>;
-}
-
-namespace BusinessService {
+export namespace BusinessService {
     @Singleton
     export abstract class Student {
         /**
@@ -35,12 +23,3 @@ namespace BusinessService {
         abstract fetchApplications: (pageNum: number, pageSize: number) => Promise<Array<LeaveApplication>>;
     }
 }
-
-namespace ComprehensiveService {
-    @Singleton
-    export abstract class Student {
-
-    }
-}
-
-export { UserService, AuthService, BusinessService, ComprehensiveService }

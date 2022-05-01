@@ -1,4 +1,4 @@
-import { BackEndFoundation } from "@/reliance/foundation";
+import { BackEndFoundation } from "@/foundations";
 import { Container } from "typescript-ioc";
 
 const backend = ()=>Container.get(BackEndFoundation);

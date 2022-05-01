@@ -1,4 +1,4 @@
-import { uuid } from "../../../utils/type"
+import { uuid } from "../../base"
 import { PolicyType } from "./type"
 
 export type Policy = {

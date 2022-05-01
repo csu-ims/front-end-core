@@ -1,4 +1,4 @@
-import { UseAuthService, UseUserService } from "./src/decorators/service";
+import { UseAuthService, UseUserService } from "./src/providers/service";
 export { 
     UseAuthService, 
     UseUserService 

@@ -1,4 +1,4 @@
-import { phonenumber, uuid } from "../../utils/type";
+import { phonenumber, uuid } from "../base";
 import { Instructor } from "./instructor";
 import { Student } from "./student";
 

@@ -1,5 +1,5 @@
 import { User } from "@/domain/user";
-import { baseResponse } from "@/utils/type";
+import { baseResponse } from "@/domain/base";
 import { backend } from ".";
 
 const getProfile = async () => {

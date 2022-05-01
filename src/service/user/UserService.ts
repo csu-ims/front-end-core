@@ -1,12 +1,10 @@
-import { UserService } from "@/application/ports";
+import { UserService } from ".";
 import { User } from "@/domain/user";
-import { BrowserFoundation } from "@/reliance/foundation";
+import { BrowserFoundation } from "@/foundations";
 import { Inject } from "typescript-ioc";
-import { UseUserService } from "@/decorators/service";
 
 const FIELD = 'user';
 
-@UseUserService
 export class UserAdaptor extends UserService {
     @Inject
     browser?: BrowserFoundation

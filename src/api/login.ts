@@ -1,4 +1,4 @@
-import { baseResponse, imgBase64string, uuid } from "@/utils/type";
+import { baseResponse, imgBase64string, uuid } from "@/domain/base";
 import { backend } from ".";
 
 const fetchCaptchaImage = async () => {

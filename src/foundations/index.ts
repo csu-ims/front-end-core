@@ -1,4 +1,4 @@
-import { htttpRequest } from "@/utils/type";
+import { htttpRequest } from "@/domain/base";
 import { Singleton } from "typescript-ioc";
 
 @Singleton

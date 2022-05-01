@@ -1,5 +1,5 @@
 import { User } from "@/domain/user";
-import { BackEndFoundation } from "@/reliance/foundation";
+import { BackEndFoundation } from "@/foundations";
 import { Container } from "typescript-ioc";
 import { fakeReliance, mockRequest } from "./fakeReliance";
 
