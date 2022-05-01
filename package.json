@@ -12,10 +12,16 @@
   "author": "Rick Lin",
   "license": "MIT",
   "devDependencies": {
+    "@faker-js/faker": "^6.2.0",
     "@types/jest": "^27.4.1",
     "jest": "^27.0.0",
     "ts-jest": "^27.1.4",
+    "ts-mockito": "^2.6.1",
     "typescript": "^4.6.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DevRickLin/ims-frontend-core"
   },
   "dependencies": {
     "@types/axios": "^0.14.0",

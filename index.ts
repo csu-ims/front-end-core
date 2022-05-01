@@ -1,11 +1,5 @@
-class Core {
-
-    host: string | null = null;
-
-    static singleton: Core = new Core();
-    static use(){
-        return this.singleton;
-    }
+import { UseAuthService, UseUserService } from "./src/decorators/service";
+export { 
+    UseAuthService, 
+    UseUserService 
 }
-
-export { Core }

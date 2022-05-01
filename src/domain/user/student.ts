@@ -1,4 +1,4 @@
-import { phonenumber, uuid } from "../base";
+import { phonenumber, uuid } from "../../utils/type";
 
 export type Student = {
     stuId: string;

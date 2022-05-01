@@ -4,6 +4,8 @@
       "emitDecoratorMetadata": true,
       "target": "es6",
       "module": "commonjs",
+      "esModuleInterop": true,
+      "moduleResolution": "Node",
       "declaration": true,
       "outDir": "./dist",
       "strict": true,
@@ -11,4 +13,4 @@
           "@/*": ["./src/*"]
       }
     }
-  }
+}
