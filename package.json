@@ -1,12 +1,18 @@
 {
   "name": "@csu-ims/ims-frontend-core",
-  "version": "0.0.2",
+  "version": "0.0.8",
   "description": "IMS frontend core aim to provide the foundation business rules  of IMS frontend, which is inspired by [Clean Architecture](https://dev.to/bespoyasov/clean-architecture-on-frontend-4311), and powered by Ioc.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist/*.js",
+    "dist/**/*.js",
+    "dist/*.d.ts",
+    "dist/**/*.d.ts"
+  ],
   "scripts": {
     "publish": "npm run build",
-    "build": "tsc",
+    "build": "tsc && npx tsc-alias",
     "test": "jest"
   },
   "author": "Rick Lin",
