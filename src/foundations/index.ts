@@ -2,7 +2,7 @@ import { htttpRequest } from "@/domain/base";
 import { Singleton } from "typescript-ioc";
 
 @Singleton
-abstract class BackEndFoundation {
+abstract class HttpFoundation {
     abstract get: htttpRequest;
     abstract post: htttpRequest;
     abstract put: htttpRequest;
@@ -18,4 +18,4 @@ abstract class BrowserFoundation {
     }
 }
 
-export { BackEndFoundation, BrowserFoundation }
+export { HttpFoundation, BrowserFoundation }

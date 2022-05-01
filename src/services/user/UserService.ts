@@ -5,7 +5,7 @@ import { Inject } from "typescript-ioc";
 
 const FIELD = 'user';
 
-export class UserAdaptor extends UserService {
+export class BaseUserService extends UserService {
     @Inject
     browser?: BrowserFoundation
     private _user?: User

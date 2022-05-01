@@ -1,5 +1,2 @@
-import { UseAuthService, UseUserService } from "./src/providers/service";
-export { 
-    UseAuthService, 
-    UseUserService 
-}
+export * as providers from "@/providers";
+export * as services from "@/services"; 

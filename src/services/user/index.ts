@@ -1,8 +1,11 @@
 import { User } from "@/domain/user";
 import { Singleton } from "typescript-ioc";
+import { BaseUserService } from "./UserService";
 
 @Singleton
-export abstract class UserService {
+abstract class UserService {
     abstract user?: User;
     abstract update: (user: User) => void;
 }
+
+export { UserService, BaseUserService }
