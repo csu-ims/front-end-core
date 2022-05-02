@@ -9,5 +9,5 @@ export type LeaveApplication = {
     place: string // 外出地点
     startTime: Date
     endTime: Date
-    reasion: string
+    reason: string
 }
