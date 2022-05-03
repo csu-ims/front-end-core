@@ -35,7 +35,7 @@ const Leaveapplies:LeaveApplication[] = [];
 const DetailedLeaveapplies: DetailedLeaveApplication[] = [];
 
 //发送请假列表的请求参数
-export type Post_leave_query = {
+export type PostLeaveQuery = {
     id: null
     leaveType: number
     applicantStuID: string
@@ -51,13 +51,13 @@ export type Post_leave_query = {
     deleted: boolean
 }
 //获取请假列表的请求参数
-export type Get_leave_query = {
+export type GetLeaveQuery = {
     input: number
     pageSize: number
     selectStatus: number
     Authorization: authorization
 }
-export type Get_detailed_leave_query = {
+export type GetDetailedLeaveQuery = {
     applyUUID: uuid
     Authorization: authorization
 }
