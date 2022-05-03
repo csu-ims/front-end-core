@@ -1,40 +1,33 @@
-import { HttpFoundation } from "@/foundations";
-import { baseResponse } from "@/domain/base";
-import { mock } from "ts-mockito"
 import { Container } from "typescript-ioc";
 import { Snapshot } from "typescript-ioc";
+import { debugLoger } from "./debugLoger";
+import { useFakeBackEnd } from "./fakeBackEnd";
 
-const mockRequest = async<r = baseResponse,q = void,f = void>(url:string,q:q,f:f)=>{
-    const res = mock<r & { code:200 }>();
-    return res;
-};
-
-class BackEnd extends HttpFoundation {
-    get = mockRequest
-    post = mockRequest;
-    put= mockRequest;
-    deleteFn = mockRequest;
-}
-
-interface fakeReliance {
+interface f {
     snapshot: Snapshot | null
     before: Function
     after: Function
 }
 
-const fakeReliance: fakeReliance = {
+/**
+ * @summary provide the test unit the reliances that needed.
+ * 
+ */
+const fakeReliance: f = {
     snapshot: null,
-    before(){
+    before(reliances: [Function] = [useFakeBackEnd]){
         this.snapshot = Container.snapshot();
-        Container.bind(HttpFoundation).to(BackEnd);
+       for(let reliance of reliances){
+           reliance();
+       }
     },
     after(){
         if(!this.snapshot){
-            console.log("snapshot not ready");
+            debugLoger("snapshot not ready");
             return;
         }
         this.snapshot.restore();
     }
 }
 
-export { mockRequest, fakeReliance }
+export { fakeReliance }

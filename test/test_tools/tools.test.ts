@@ -1,12 +1,13 @@
 import { User } from "@/domain/user";
 import { HttpFoundation } from "@/foundations";
 import { Container } from "typescript-ioc";
-import { fakeReliance, mockRequest } from "./fakeReliance";
+import { fakeReliance } from "./fakeReliance";
+import { mockRequest, useFakeBackEnd } from "./fakeBackEnd";
+import { useTestBackEnd } from "./testBackEnd";
 
 test('fakeReliance tool test',()=>{
-    fakeReliance.before();
+    fakeReliance.before([useFakeBackEnd]);
     const backend = Container.get(HttpFoundation);
-    expect(backend).toBeDefined();
     let prop: keyof typeof backend;
     for(prop in backend){
         if(typeof backend[prop] === 'function'){
@@ -22,3 +23,11 @@ test('mock request tool test',async ()=>{
         expect(res.code).toEqual(200);
     });
 })
+
+test('test backend tool test',()=>{
+    fakeReliance.before([useTestBackEnd]);
+    const backend = Container.get(HttpFoundation);
+    backend.get('/login/captchaImage').then( res => {
+        expect(res.code).toEqual(200);
+    })
+});
