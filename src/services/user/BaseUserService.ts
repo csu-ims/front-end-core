@@ -1,10 +1,12 @@
-import { UserService } from ".";
+import { UserService } from "./base";
 import { User } from "@/domain/user";
 import { BrowserFoundation } from "@/foundations";
-import { Inject } from "typescript-ioc";
+import { Inject, OnlyInstantiableByContainer, Singleton } from "typescript-ioc";
 
 const FIELD = 'user';
 
+@Singleton
+@OnlyInstantiableByContainer
 export class BaseUserService extends UserService {
     @Inject
     browser?: BrowserFoundation
