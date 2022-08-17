@@ -1,4 +1,4 @@
-import { imguri, uuid } from "../../base"
+import { imgUri, uuid } from "../../base"
 import { PolicyType } from "../policy/type"
 
 export type Addition<T extends PolicyType> = {
@@ -6,6 +6,6 @@ export type Addition<T extends PolicyType> = {
     typeId : T['uuid']
     value: number // 加分分值
     name: string //加分名称
-    uri: imguri
+    uri: imgUri
     attachment: T['attachment']
 }

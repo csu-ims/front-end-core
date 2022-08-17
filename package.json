@@ -19,11 +19,8 @@
   "license": "MIT",
   "devDependencies": {
     "@faker-js/faker": "^6.2.0",
-    "@types/express": "^4.17.13",
     "@types/jest": "^27.4.1",
-    "axios": "^0.27.2",
     "express": "^4.18.1",
-    "http-proxy-middleware": "^2.0.6",
     "jest": "^27.0.0",
     "ts-jest": "^27.1.4",
     "ts-mockito": "^2.6.1",
@@ -33,15 +30,19 @@
     "type": "git",
     "url": "git+https://github.com/csu-ims/frontend-core.git"
   },
-  "dependencies": {
-    "reflect-metadata": "^0.1.13",
-    "typescript-ioc": "^3.2.2"
-  },
   "bugs": {
     "url": "https://github.com/csu-ims/frontend-core/issues"
   },
   "homepage": "https://github.com/csu-ims/frontend-core#readme",
   "directories": {
     "test": "test"
+  },
+  "dependencies": {
+    "@types/babel__core": "^7.1.19",
+    "axios": "^0.27.2",
+    "fp-ts": "^2.12.2",
+    "i": "^0.3.7",
+    "npm": "^8.17.0",
+    "rambda": "^7.2.1"
   }
 }
