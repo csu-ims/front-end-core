@@ -4,7 +4,6 @@ import { Student } from "./student";
 
 export type User = {
     id: uuid;
-    pwd:string;
     phone: phonenumber;
     email: string;
     avatar: string;

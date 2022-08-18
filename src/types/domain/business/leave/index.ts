@@ -1,5 +1,5 @@
 import { uuid } from "../../base"
-import { phonenumber } from "@/domain/base"
+import { phonenumber } from "@/types/domain/base"
 
 export type LeaveApplication = {
     id: uuid
