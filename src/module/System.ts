@@ -14,4 +14,4 @@ class SystemModule extends BehaviorSubject<SystemState> {
     
 };
 
-export const system = new SystemModule({ Authorization: none, User: none, isLoggedIn: false });
+export const system = new SystemModule({ Authorization: none, User: none, isLoggedIn: false, config: none });

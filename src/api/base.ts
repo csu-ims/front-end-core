@@ -4,9 +4,11 @@ import { tryCatch } from "fp-ts/lib/TaskEither";
 import { system } from "@/module/System";
 import { getOrElse } from "fp-ts/lib/Option";
 import { pipe } from "fp-ts/lib/function";
+import { config } from "@/types/export";
 
 axios.interceptors.request.use((config)=>{
-    return { ...config, 
+    return { ...config,
+        baseURL: pipe(system.state.config,getOrElse<config>(()=>({ baseUrl: '/' }))).baseUrl, 
         headers: { 
             ...config.headers, 
             'Authorization' :  pipe(system.state.Authorization,getOrElse(()=>''))
