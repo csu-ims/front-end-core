@@ -1,26 +1,55 @@
-import { useState } from "react";
-import { login as loginReq } from "@/api/login";
+import { useState, useEffect } from "react";
+import { fetchCaptchaImage, login as loginReq } from "@/api/login";
 import { system } from "@/module/System";
 import { LoginParams } from "@/types/api";
 import { pipe } from "fp-ts/lib/function";
 import { assumeRight } from "@/utils/either";
-import { none, Option, getOrElse, some } from "fp-ts/lib/Option";
+import { none, Option, getOrElse, some, map } from "fp-ts/lib/Option";
+import { imgBase64string } from "@/types/domain/base";
 
-export function useLogin() {
+export default function useLogin() {
+
+    let _uuid:Option<string> = none; 
     const [isLoggedIn,setLoggedIn] = useState(false);
     const [isLoading,setLoading] = useState(false);
-    const [loginParams,setLoginParams] = useState<Option<LoginParams>>(none);
+    const [loginParams,setLoginParams] = useState<Option<{ userId: LoginParams['userId'], password: LoginParams['password'], code: LoginParams['code'] }>>(none);
+    const [captchaImage,setCaptchaImage] = useState<Option<imgBase64string>>(none);
+
+    const updateCaptchaImage = async () => pipe(
+            (await fetchCaptchaImage()),
+            assumeRight(),
+            res => { setCaptchaImage(some(res.img)), _uuid = some(res.uuid) }
+    );
 
     const login = async () => {
+
         setLoading(true);
-        const param = pipe(loginParams,getOrElse<LoginParams>(()=>{ throw Error("[hook/useLogin] login parameters is none.") })); 
-        pipe((await loginReq(param)()),assumeRight(), res => system.update( s => ({ ...s, Authorization: some(res.token), isLoggedIn: true })));
+
+        const param = pipe(
+            loginParams,
+            map(
+                pipe(
+                    _uuid,
+                    getOrElse<string>(()=>{ throw Error("[hook/useLogin] uuid of the captcha image is none.") }),(uuid)=>(p)=>({ ...p, uuid })
+                )
+            ),
+            getOrElse<LoginParams>(()=>{ throw Error("[hook/useLogin] login parameters is none.") })
+        ); 
+
+        pipe(
+            (await loginReq(param)()),
+            assumeRight(), 
+            res => system.update( s => ({ ...s, Authorization: some(res.token), isLoggedIn: true }))
+        );
+
         setLoading(false);
-    }
+    };
 
     system.subscribe((s)=>{
         setLoggedIn(s.isLoggedIn)
     });
 
-    return [login,isLoggedIn,isLoading,loginParams,setLoginParams];
+    useEffect(()=>{ updateCaptchaImage() }, []);
+
+    return [captchaImage,updateCaptchaImage,login,isLoggedIn,isLoading,loginParams,setLoginParams];
 }

@@ -7,10 +7,16 @@ import { assumeRight } from "@/utils/either";
 import { system } from "@/module/System";
 
 export default function useUser() {
+
     const [user,setUser] = useState<Option<User>>(none);
+
     const fetch = async () => {
-        pipe((await fetchUserProfile()),assumeRight(),(user)=>{ system.update((s)=>({ ...s, User: some(user) })) });
-    }
+        pipe(
+            (await fetchUserProfile()),
+            assumeRight(),
+            user => system.update((s)=>({ ...s, User: some(user) }))
+        );
+    };
 
     system.subscribe((s)=>{
         if ( isNone(s.User) ) {
@@ -18,7 +24,7 @@ export default function useUser() {
             return;
         }
         setUser(s.User);
-    })
+    });
     
     return [user];
 }

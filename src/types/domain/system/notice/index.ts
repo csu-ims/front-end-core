@@ -1,4 +1,4 @@
-import { uuid } from "@/domain/base"
+import { uuid } from "@/types/domain/base"
 
 export type Notice = {
     noticeId: uuid
