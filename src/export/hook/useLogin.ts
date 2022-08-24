@@ -10,6 +10,8 @@ import { imgBase64string } from "@/types/domain/base";
 export default function useLogin() {
 
     let _uuid:Option<string> = none; 
+    
+    // 返回值：[自定义的状态, 更新状态的方法] = useState(状态初始值)
     const [isLoggedIn,setLoggedIn] = useState(false);
     const [isLoading,setLoading] = useState(false);
     const [loginParams,setLoginParams] = useState<Option<{ userId: LoginParams['userId'], password: LoginParams['password'], code: LoginParams['code'] }>>(none);

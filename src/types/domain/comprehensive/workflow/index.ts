@@ -2,7 +2,7 @@ import { Policy } from "../policy"
 
 export type WorkFlow = {
     policyId: Policy['uuid']
-    dataCreateBedginTime: Date
+    dataCreateBeginTime: Date
     dataCreateEndTime: Date
     dataAuditBeginTime: Date
     dataAuditEndTime: Date
