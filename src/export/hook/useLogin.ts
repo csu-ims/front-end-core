@@ -20,6 +20,8 @@ export default function useLogin() {
 
     const updateCaptchaImage = async () => pipe(
         (await fetchCaptchaImage()),
+        // * Takes two functions and an `Either` value, if the value is a `Left` the inner value is applied to the first function,
+        // * if the value is a `Right` the inner value is applied to the second function.
         foldW<Error, errorCode, CaptchaImageResponse, void>(
             netErrorToErrorCode,
             res => { setCaptchaImage(some(res.img)), _uuid = some(res.uuid) }
@@ -32,7 +34,8 @@ export default function useLogin() {
 
         const userInput = pipe(
             loginParams,
-            fromOption<errorCode>(() => 'USER'),
+            //Returns `true` if the either is an instance of `Left`, `false` otherwise.
+            fromOption<errorCode>(() => 'USER')
         );
 
         const userInputToLoginParams = pipe(
@@ -55,7 +58,7 @@ export default function useLogin() {
                     (await right()),
                     foldW<Error, errorCode, LoginResponse, LoginResponse>(
                         netErrorToErrorCode,
-                        right => { 
+                        right => {
                             setLoggedIn(true);
                             return right;
                         }
