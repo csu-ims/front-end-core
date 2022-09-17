@@ -5,7 +5,6 @@ import { system } from "@/module/System";
 import { getOrElse } from "fp-ts/lib/Option";
 import { pipe } from "fp-ts/lib/function";
 import { config } from "@/types/export";
-import { string } from "fp-ts";
 
 axios.interceptors.request.use((config) => {
     return {
@@ -44,9 +43,9 @@ export const put = <BodyParams, Response>(url: string) => (param: BodyParams) =>
 
 /**
  * @param url target url
- * @notion delete是保留字,不能用作变量名,此处命名为mydelete
+ * @notice delete是保留字,不能用作变量名,此处命名为mydelete
  */
  export const mydelete = <BodyParams, Response>(url: string) => (param: BodyParams) => tryCatch(
-    () => axios.delete<any, Response>(url, param),
+    () => axios.delete<any, Response>(url,{data:param}),
     (res) => Error((res as AxiosError).message)
 )
