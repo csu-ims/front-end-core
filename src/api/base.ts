@@ -31,3 +31,13 @@ export const post = <BodyParams,Response>(url:string) => (param:BodyParams) => t
     () => axios.post<any,Response>(url,param),
     (res)=>Error((res as AxiosError).message)
 )
+
+export const del = <BodyParams,Response>(url:string) => (param:BodyParams) => tryCatch(
+    () => axios.delete<any,Response>(url,{ data: param }),
+    (res)=>Error((res as AxiosError).message)
+)
+
+export const put = <BodyParams,Response>(url:string) => (param:BodyParams) => tryCatch(
+    () => axios.put<any,Response>(url,{ data: param }),
+    (res)=>Error((res as AxiosError).message)
+)

@@ -3,26 +3,27 @@ import { fetchCaptchaImage, login as loginReq, logout as logoutReq } from "@/api
 import { system } from "@/module/System";
 import { CaptchaImageResponse, LoginParams, LoginResponse } from "@/types/api";
 import { pipe } from "fp-ts/lib/function";
-import { assumeRight } from "@/utils/either";
-import { none, Option, getOrElse, some, matchW } from "fp-ts/lib/Option";
+import { none, Option, some, matchW } from "fp-ts/lib/Option";
 import { imgBase64string } from "@/types/domain/base";
-import { Either, foldW, fromOption, left, map, right } from "fp-ts/lib/Either";
+import { Either, foldW, left, map, fromPredicate } from "fp-ts/lib/Either";
 import { errorCode } from "@/types/export";
 import { netErrorToErrorCode } from "@/utils/net";
+
+type loginParams = { userId: LoginParams['userId'], password: LoginParams['password'], code: LoginParams['code'] };
 
 export default function useLogin() {
 
     let _uuid: Option<string> = none;
     const [isLoggedIn, setLoggedIn] = useState(false);
     const [isLoading, setLoading] = useState(false);
-    const [loginParams, setLoginParams] = useState<Option<{ userId: LoginParams['userId'], password: LoginParams['password'], code: LoginParams['code'] }>>(none);
-    const [captchaImage, setCaptchaImage] = useState<Option<imgBase64string>>(none);
+    const [loginParams, setLoginParams] = useState<loginParams | null>(null);
+    const [captchaImage, setCaptchaImage] = useState<imgBase64string | null>(null);
 
     const updateCaptchaImage = async () => pipe(
         (await fetchCaptchaImage()),
         foldW<Error, errorCode, CaptchaImageResponse, void>(
             netErrorToErrorCode,
-            res => { setCaptchaImage(some(res.img)), _uuid = some(res.uuid) }
+            res => { setCaptchaImage(res.img), _uuid = some(res.uuid) }
         )
     );
 
@@ -32,8 +33,11 @@ export default function useLogin() {
 
         const userInput = pipe(
             loginParams,
-            fromOption<errorCode>(() => 'USER'),
-        );
+            fromPredicate( 
+                p => p !== null ,
+                ():errorCode => 'USER'
+            ),
+        ) as unknown as Either<errorCode,loginParams>;
 
         const userInputToLoginParams = pipe(
             _uuid,
@@ -70,6 +74,7 @@ export default function useLogin() {
     };
 
     const logout = async () => {
+
         setLoading(true);
 
         const result = pipe(
